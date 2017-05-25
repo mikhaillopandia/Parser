@@ -26,7 +26,7 @@ public class Parser {
         //int ReadTimeout;
 
         //prepare Root information
-        String rootUrl = "https://www.olx.ua/hobbi-otdyh-i-sport/knigi-zhurnaly/";
+        String rootUrl = "https://zaxidfest.com/performers";
         String domen;
         Domen d = new Domen();
         domen = d.findDomen(rootUrl);
