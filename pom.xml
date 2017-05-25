@@ -14,5 +14,12 @@
         <artifactId>jsoup</artifactId>
         <version>1.10.2</version>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/postgresql/postgresql -->
+    <dependency>
+        <groupId>postgresql</groupId>
+        <artifactId>postgresql</artifactId>
+        <version>9.0-801.jdbc4</version>
+    </dependency>
+
 
 </project>

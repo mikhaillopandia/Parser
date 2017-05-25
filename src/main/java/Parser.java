@@ -1,3 +1,4 @@
+import javafx.geometry.Pos;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -25,7 +26,7 @@ public class Parser {
         //int ReadTimeout;
 
         //prepare Root information
-        String rootUrl = "https://zaxidfest.com/performers";
+        String rootUrl = "https://www.olx.ua/hobbi-otdyh-i-sport/knigi-zhurnaly/";
         String domen;
         Domen d = new Domen();
         domen = d.findDomen(rootUrl);
@@ -81,5 +82,7 @@ public class Parser {
         for (Page page: pageList) {
             System.out.println(page.getUrl());
         }
+        PostgreSQLJDBC Postgre = new PostgreSQLJDBC();
+        Postgre.insert(pageList);
     }
 }
