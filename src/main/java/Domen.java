@@ -17,13 +17,13 @@ public class Domen {
         int start = 0;
         int end = 0;
         start = url.indexOf("//");
-        end = url.indexOf('/', start+2);
+        end = url.indexOf('/', start + 2);
 
-        if((url.substring(0, end).indexOf(domen) > 0) )
-        {
-            return 1;
-        }
-        else
-            return 0;
+        //if (end != -1) {
+            if ((url.substring(0).indexOf(domen) > 0)) {
+                return 1;
+            } else
+                return 0;
+
     }
 }

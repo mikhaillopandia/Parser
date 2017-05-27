@@ -20,13 +20,13 @@ public class Parser {
 
         int object_id = 2; //because of Root object is 1
         int parent_id = 0;
-        int maxLevel = 2;//MAX level of parcing
+        int maxLevel = 3;//MAX level of parcing
         int currLevel = 1;//current level of parcing
         //int ConnectTimeout;
         //int ReadTimeout;
 
         //prepare Root information
-        String rootUrl = "https://zaxidfest.com/performers";
+        String rootUrl = "https://vk.com/audios62819227";
         String domen;
         Domen d = new Domen();
         domen = d.findDomen(rootUrl);
@@ -37,7 +37,7 @@ public class Parser {
         A.setParent(0);
         A.setLevel(1);
         pageList.add(A);
-        System.out.println(A.toString());
+        //System.out.println(A.toString());
 
         while (currLevel <= maxLevel) {
         for (Page p : pageList) {

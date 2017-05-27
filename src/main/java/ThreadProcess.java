@@ -37,5 +37,7 @@ public class ThreadProcess extends Thread{
             elapsedTime = System.currentTimeMillis() - startTime;
             //System.out.println(elapsedTime);
             P.setTime(elapsedTime);
+
+
     }
 }

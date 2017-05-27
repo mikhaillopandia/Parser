@@ -37,19 +37,54 @@ public class Process {
     //multyThread
     public void Process(List<Page> pageList) {
         List<ThreadProcess> ThreadList = new ArrayList<ThreadProcess>();
+        int Tcount = 2;
         int i = 0;
+        int j = 0;
+        int count = 0 ;
         for (Page p : pageList) {
             ThreadList.add(new ThreadProcess(p));
         }
-        for (Thread T : ThreadList) {
+
+        while (j < ThreadList.size()) {
             {
-                T.start();
-                try {
-                    T.join();
+                count = 0 ;
+               /* for(Thread T : ThreadList)
+                {
+                    if(T.getState() == Thread.State.TERMINATED)
+                        count++;
+                }*/
+                for(int t =i; t< ThreadList.size(); t++)
+                {
+                    if(ThreadList.get(t).getState() == Thread.State.TERMINATED)
+                        count++;
+                }
+if(count == 0)
+    count = Tcount;
+                for(int q =0; q<Tcount && q< count && j<ThreadList.size();q++)
+                //for(int q =0; q<=Tcount && q<= count;q++)
+                {
+                    ThreadList.get(j).start();
+
+                    if(j>ThreadList.size()-Tcount-2)
+                    {
+                        try {
+                        ThreadList.get(j).join();
+                    } catch (InterruptedException e) {
+                        System.out.println("Главный поток прерван");
+                    }
+                    }
+                    j++;
+                    if (q == 0)
+                        i = j;
+                }
+
+                /*try {
+                    ThreadList.get(j).join();
                 } catch (InterruptedException e) {
                     System.out.println("Главный поток прерван");
-                }
-                i++;
+                }*/
+                //i++;
+                //j++;
             }
         }
     }
