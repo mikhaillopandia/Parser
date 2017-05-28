@@ -14,19 +14,16 @@ import java.util.List;
  * Created by milo0116 on 30.04.2017.
  */
 public class Parser {
-    public static void main(String[] args) throws IOException {
+    public void ParserProcess(String url, int maxL, int Threads, int ConnectTimeout, int ReadTimeout, boolean Home) throws IOException {
         List<Page> pageList = new ArrayList<Page>();
         List<Page> selectList = new ArrayList<Page>();
 
         int object_id = 2; //because of Root object is 1
         int parent_id = 0;
-        int maxLevel = 3;//MAX level of parcing
+        int maxLevel = maxL;//MAX level of parcing
         int currLevel = 1;//current level of parcing
-        //int ConnectTimeout;
-        //int ReadTimeout;
-
         //prepare Root information
-        String rootUrl = "https://vk.com/audios62819227";
+        String rootUrl = url;
         String domen;
         Domen d = new Domen();
         domen = d.findDomen(rootUrl);
@@ -63,14 +60,16 @@ public class Parser {
             currLevel++;
              selectList.clear();
         }
-        Process p = new Process();
-        p.Process(pageList);
+
         for (Page page: pageList) {
             if(d.match(domen, page.getUrl()) == 0)
                 page.setHomeDomen(0);
-
             page.toJson();
         }
+        //processing
+        Process p = new Process();
+        p.Process(pageList, Threads, ConnectTimeout, ReadTimeout, Home);
+
         Json j = new Json();
         String Json = j.toJson(pageList);
            for (Page page: pageList) {
@@ -78,11 +77,7 @@ public class Parser {
         }
         System.out.println(Json);
 
-        //temp
-        for (Page page: pageList) {
-            System.out.println(page.getUrl());
-        }
-        PostgreSQLJDBC Postgre = new PostgreSQLJDBC();
-        Postgre.insert(pageList);
+      /*  PostgreSQLJDBC Postgre = new PostgreSQLJDBC();
+        Postgre.insert(pageList);*/
     }
 }

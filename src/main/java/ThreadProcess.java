@@ -6,10 +6,14 @@ import java.net.URL;
  */
 public class ThreadProcess extends Thread{
     private Page P;
+    int CTimeout;
+    int RTimeout;
 
-    public ThreadProcess(Page Page)
+    public ThreadProcess(Page Page, int ConnectTimeout, int ReadTimeout)
     {
         this.P = Page;
+        this.CTimeout = ConnectTimeout;
+        this.RTimeout = ReadTimeout;
     }
 
     public void run()
@@ -23,8 +27,8 @@ public class ThreadProcess extends Thread{
                 connection = (HttpURLConnection) new URL(P.getUrl()).openConnection();
                 connection.setRequestMethod("GET");
                 connection.setUseCaches(false);
-                //connection.setConnectTimeout(250);
-                //connection.setReadTimeout(500);
+                connection.setConnectTimeout(CTimeout);
+                connection.setReadTimeout(RTimeout);
 
                 connection.connect();
                 P.setStatus(connection.getResponseCode()+" "+connection.getResponseMessage());
