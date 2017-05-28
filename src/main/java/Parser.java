@@ -77,7 +77,7 @@ public class Parser {
         }
         System.out.println(Json);
 
-      /*  PostgreSQLJDBC Postgre = new PostgreSQLJDBC();
-        Postgre.insert(pageList);*/
+        PostgreSQLJDBC Postgre = new PostgreSQLJDBC();
+        Postgre.insert(pageList);
     }
 }
